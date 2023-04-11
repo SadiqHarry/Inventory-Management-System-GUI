@@ -1,6 +1,6 @@
 package main.project;
 
-public class Part {
+public class Product {
     private int id;
     private String name;
     private double price;
@@ -9,8 +9,8 @@ public class Part {
     private int max;
 
 
-  //Constructor
-    public Part(int id, String name, double price, int stock, int min, int max) {
+    //Constructor
+    public Product(int id, String name, double price, int stock, int min, int max) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -20,7 +20,7 @@ public class Part {
     }
 
 
-//Getters and Setters
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -58,3 +58,4 @@ public class Part {
         this.max = max;
     }
 }
+

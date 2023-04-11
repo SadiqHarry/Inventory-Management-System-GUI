@@ -21,30 +21,29 @@ import java.util.ResourceBundle;
 public class MainScreenController implements Initializable {
 
 
-    /***
-     * Buttons
-     */
+    //Buttons
     @FXML private Button addPartsButton;
     @FXML private Button addProductsButton;
     @FXML private Button mainScreenExitButton;
 
-    /***
-     * Add Parts Table & Columns
-     */
+    //Parts Table & Columns
     @FXML private TableView<Part> partsTableView;
     @FXML private TableColumn<?, ?> partsIdColumn;
     @FXML private TableColumn<?, ?> partsInventoryLevelColumn;
     @FXML private TableColumn<?, ?> partsNameColumn;
     @FXML private TableColumn<?, ?> partsPriceColumn;
 
+    //Product Table &
+    @FXML private TableView<Product> productsTable;
+    @FXML private TableColumn<?, ?> productsIdColumn;
+    @FXML private TableColumn<?, ?> productsInventoryLevelColumn;
+    @FXML private TableColumn<?, ?> productsNameColumn;
+    @FXML private TableColumn<?, ?> productsPriceColumn;
 
-    /***
-     * Initializes the addPartsButton and switches to "AddParts.fxml" Scene.
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    void switchToAddParts(ActionEvent event) throws IOException {
+
+
+    //Initializes the addPartsButton and switches to "AddParts.fxml" Scene.
+    @FXML void switchToAddParts(ActionEvent event) throws IOException {
             Parent addParts = FXMLLoader.load(getClass().getResource("AddParts.fxml"));
             Scene scene = new Scene(addParts);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -53,13 +52,8 @@ public class MainScreenController implements Initializable {
 
     }
 
-    /***
-     * Initializes the addProductsButton and switches to "AddProducts.fxml" Scene.
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    void switchToAddProducts(ActionEvent event) throws IOException {
+    //Initializes the addProductsButton and switches to "AddProducts.fxml" Scene.
+    @FXML void switchToAddProducts(ActionEvent event) throws IOException {
         Parent addProducts = FXMLLoader.load(getClass().getResource("AddProducts.fxml"));
         Scene scene = new Scene(addProducts);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -68,26 +62,26 @@ public class MainScreenController implements Initializable {
 
     }
 
-    /***
-     * Initializes and Exists the program from "MainScreen"
-     * @param mainScreenExitButton
-     */
-    @FXML
-    void exitMainScreen(ActionEvent mainScreenExitButton) {
+    //Initializes the exit button and exists the program from "MainScreen"
+    @FXML void exitMainScreen(ActionEvent mainScreenExitButton) {
         Stage stage = (Stage) ((Node) mainScreenExitButton.getSource()).getScene().getWindow();
         stage.close();
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Populate parts table view
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Populate parts table
         partsTableView.setItems(Inventory.getAllParts());
         partsIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         partsNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partsInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partsPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        // Populates product table
+
     }
+
 
 
 }

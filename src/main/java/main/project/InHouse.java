@@ -19,3 +19,4 @@ public class InHouse extends Part {
         this.machineId = machineId;
     }
 }
+

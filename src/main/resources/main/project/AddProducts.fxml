@@ -15,22 +15,22 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Text>
-        <RadioButton fx:id="inHouseBtn" layoutX="200.0" layoutY="34.0" mnemonicParsing="false" text="In House" />
-        <RadioButton fx:id="outsourcedBtn" layoutX="441.0" layoutY="34.0" mnemonicParsing="false" text="Outsourced" />
-        <TextField disable="true" editable="false" layoutX="200.0" layoutY="100.0" promptText="Auto Gen. Disabled" />
-        <TextField layoutX="200.0" layoutY="140.0" />
-        <TextField layoutX="200.0" layoutY="180.0" />
-        <TextField layoutX="200.0" layoutY="220.0" />
-        <TextField layoutX="200.0" layoutY="260.0" />
-        <TextField layoutX="200.0" layoutY="300.0" />
+        <RadioButton fx:id="inHouseButton" layoutX="200.0" layoutY="34.0" mnemonicParsing="false" onAction="#inHouse" text="In House" />
+        <RadioButton fx:id="outSourcedButton" layoutX="441.0" layoutY="34.0" mnemonicParsing="false" onAction="#outSource" text="Outsourced" />
+        <TextField fx:id="productId" disable="true" editable="false" layoutX="200.0" layoutY="100.0" promptText="Auto Gen. Disabled" />
+        <TextField fx:id="productName" layoutX="200.0" layoutY="140.0" />
+        <TextField fx:id="inventoryName" layoutX="200.0" layoutY="180.0" />
+        <TextField fx:id="productPrice" layoutX="200.0" layoutY="220.0" />
+        <TextField fx:id="productMax" layoutX="200.0" layoutY="260.0" />
+        <TextField fx:id="productToggle" layoutX="200.0" layoutY="300.0" onAction="#productToggle" />
         <Text layoutX="100.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
         <Text layoutX="100.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
         <Text layoutX="100.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inv" />
         <Text layoutX="100.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
         <Text layoutX="100.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
         <Text fx:id="toggleText" layoutX="100.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Machine ID" />
-        <TextField layoutX="452.0" layoutY="260.0" />
+        <TextField fx:id="productMin" layoutX="452.0" layoutY="260.0" />
         <Text layoutX="407.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
-        <Button layoutX="463.0" layoutY="361.0" mnemonicParsing="false" text="Save" />
+        <Button fx:id="saveButton" layoutX="463.0" layoutY="361.0" mnemonicParsing="false" text="Save" />
     </children>
 </AnchorPane>

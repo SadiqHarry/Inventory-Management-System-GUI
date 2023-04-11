@@ -16,7 +16,7 @@
          </font>
       </Text>
       <RadioButton fx:id="inHouseButton" layoutX="200.0" layoutY="34.0" mnemonicParsing="false" onAction="#inHouse" text="In House" />
-      <RadioButton fx:id="outsourcedButton" layoutX="441.0" layoutY="34.0" mnemonicParsing="false" onAction="#outSource" text="Outsourced" />
+      <RadioButton fx:id="outSourcedButton" layoutX="441.0" layoutY="34.0" mnemonicParsing="false" onAction="#outSource" text="Out Source" />
       <TextField fx:id="partId" disable="true" editable="false" layoutX="200.0" layoutY="100.0" promptText="Auto Gen. Disabled" />
       <TextField fx:id="partName" layoutX="200.0" layoutY="140.0" />
       <TextField fx:id="partInventory" layoutX="200.0" layoutY="180.0" />
@@ -25,10 +25,10 @@
       <TextField fx:id="parttoggle" layoutX="200.0" layoutY="300.0" />
       <Text layoutX="100.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
       <Text layoutX="100.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="100.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inv" />
-      <Text layoutX="100.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/Cost" />
+      <Text layoutX="100.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Level" />
+      <Text layoutX="100.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price/ Cost" />
       <Text layoutX="100.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max" />
-      <Text fx:id="toggleText" layoutX="100.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fx:id="toggleText" layoutX="100.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Machine ID" />
       <TextField fx:id="partMin" layoutX="452.0" layoutY="260.0" />
       <Text layoutX="407.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Min" />
       <Button fx:id="saveButton" layoutX="463.0" layoutY="361.0" mnemonicParsing="false" onAction="#saveButton" text="Save" />

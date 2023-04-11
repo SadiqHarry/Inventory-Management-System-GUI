@@ -39,12 +39,12 @@
       </Text>
       <Pane layoutX="500.0" layoutY="75.0" prefHeight="350.0" prefWidth="450.0">
          <children>
-            <TableView layoutX="19.0" layoutY="59.0" prefHeight="233.0" prefWidth="412.0">
+            <TableView fx:id="productsTable" layoutX="19.0" layoutY="59.0" prefHeight="233.0" prefWidth="412.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Product ID" />
-                  <TableColumn prefWidth="105.0" text="Product Name" />
-                  <TableColumn prefWidth="100.0" text="Inventory Level" />
-                  <TableColumn prefWidth="131.0" text="Price/ Cost per Unit" />
+                  <TableColumn fx:id="productsIdColumn" prefWidth="75.0" text="Product ID" />
+                  <TableColumn fx:id="productsNameColumn" prefWidth="105.0" text="Product Name" />
+                  <TableColumn fx:id="productsInventoryLevelColumn" prefWidth="100.0" text="Inventory Level" />
+                  <TableColumn fx:id="productsPriceColumn" prefWidth="131.0" text="Price/ Cost per Unit" />
                </columns>
             </TableView>
             <Button layoutX="384.0" layoutY="311.0" mnemonicParsing="false" text="Delete" />

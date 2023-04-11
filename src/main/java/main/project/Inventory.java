@@ -2,61 +2,54 @@ package main.project;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
-/**
- *
- *
- */
+
 public class Inventory {
 
-
+    // Indexes and assigns ID Parts
     private static int partId = 0;
-    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    public static int getNewPartId() {
+        return ++partId;
+    }
 
+    //Adds inhouse or outsource to part
+    public static void addPart(Part newPart) {
+        allParts.add(newPart);
+    }
+
+    //Update table with all parts
+    private static  ObservableList<Part> allParts = FXCollections.observableArrayList();
     public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
 
-    public static void addPart(Part newPart) {
-        allParts.add(newPart);
+
+
+    private static int productId = 0;
+    public static int getNewProductId() {
+        return ++productId;
     }
 
-    public static int getNewPartId() {
-        return ++partId;
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    public static ObservableList<Product> getAllProducts() {
+        return allProducts;
     }
-
-
-    //Part LookUp
-    public static Part lookupPart(int partId) {
-        Part partFound = null;
-
-        for (Part part : allParts) {
-            if (part.getId() == partId) {
-                partFound = part;
-            }
-        }
-
-        return partFound;
-    }
-
-    //Part Search
-    public static ObservableList<Part> lookupPart(String partName) {
-        ObservableList<Part> partsFound = FXCollections.observableArrayList();
-
-        for (Part part : allParts) {
-            if (part.getName().equals(partName)) {
-                partsFound.add(part);
-            }
-        }
-
-        return partsFound;
+    public static void addProduct(Product newProduct) {
+        allProducts.add(newProduct);
     }
 
 
-    public static void updatePart(int index, Part selectedPart) {
 
-        allParts.set(index, selectedPart);
+
+    //Method to handle error messages
+    public void errorMessage(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 
