@@ -48,18 +48,23 @@ public class AddPartsController implements Initializable {
 
     //Initializes the Cancel button and return to MainScreen
     @FXML void switchToMain(ActionEvent event) throws IOException {
+        boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
+        if(confirmExit){
         Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene scene = new Scene(root);
         Stage MainScreenReturn = (Stage) ((Node) event.getSource()).getScene().getWindow();
         MainScreenReturn.setScene(scene);
-        MainScreenReturn.show();
+        MainScreenReturn.show();}
 
     }
 
-    // Initializes the save button and checks which radio button is selected
+    // Initializes the save button
     @FXML void saveButton(ActionEvent event) throws IOException {
+
+        //Prints to console if save button was pressed
         System.out.println("Save button clicked");
 
+        //Get text field values
         try {
             int id = 0;
             String name = partName.getText();
@@ -71,69 +76,70 @@ public class AddPartsController implements Initializable {
             String companyName = "";
             boolean Successful = false;
 
-
+            //Checks if name field is empty
             if (name == null || name.trim().isEmpty()) {
                 Inventory display = new Inventory();
                 display.errorMessage("Please enter name");
-                return;
-            }
+                return;}
+
+            //Checks if min field is greater than max field
             if (min > max) {
                 Inventory display = new Inventory();
                 display.errorMessage("Inventory minimum must be less than maximum!");
-                return;
-            }
+                return;}
 
+            // Checks to validate that inventory levels are between min and max
             if (stock < min || stock > max) {
                 Inventory display =  new Inventory();
                 display.errorMessage("Inventory must be in between minimum and maximum!");
-                return;
-            }
+                return;}
 
+            // Checks if inHouse radio button is toggled and calls addPart method to add it to table
             try {
                 if (inHouseButton.isSelected()) {
                     machineId = Integer.parseInt(parttoggle.getText());
                     InHouse newInHousePart = new InHouse(id, name, price, stock, min, max, machineId);
                     newInHousePart.setId(Inventory.getNewPartId());
-                    Inventory.addPart(newInHousePart);
-                    Successful = true;
-                }
+                    Inventory.addNewPart(newInHousePart);
+                    Successful = true;}
+
+                //Checks machineId is a numeric value
             } catch (Exception e) {
                 Inventory display = new Inventory();
-                display.errorMessage("Error invalid input: MachineId must be numeric value");
-            }
+                display.errorMessage("Error invalid input: MachineId must be numeric value");}
 
+            //Checks if outSource radio button is toggled and calls addPart method to add it to table
             if (outSourcedButton.isSelected()) {
                 companyName = parttoggle.getText();
                 Outsourced newOutsourcedPart = new Outsourced(id, name, price, stock, min, max, companyName);
                 newOutsourcedPart.setId(Inventory.getNewPartId());
-                Inventory.addPart(newOutsourcedPart);
+                Inventory.addNewPart(newOutsourcedPart);
                 Successful = true;
             }
-
+            // return to Main Screen if successful
             if (Successful) {
                 returnToMainScreen(event);
             }
-
+            // Catch edge cases
         } catch (Exception e) {
             Inventory display = new Inventory();
-            display.errorMessage("Unknown Error");
+            display.errorMessage("Text filed missing or invalid entry");
         }
     }
 
-
-    //This method is the Cancel button that returns to MainScreen
-    private void returnToMainScreen(ActionEvent event) throws IOException {
+    //    //This method is called if that returns to MainScreen
+        void returnToMainScreen(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-    }
+        }
 
 
 
+    // Set toggle method between radio buttons
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Set toggle method between radio buttons
         toggleGroup = new ToggleGroup();
         inHouseButton.setToggleGroup(toggleGroup);
         outSourcedButton.setToggleGroup(toggleGroup);
