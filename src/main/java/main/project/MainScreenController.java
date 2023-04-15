@@ -53,7 +53,7 @@ public class MainScreenController implements Initializable {
             window.show();
 
     }
-
+    //Initializes the delete button on Parts table
     @FXML void deleteParts(ActionEvent event) {
         Part partSelected = partsTableView.getSelectionModel().getSelectedItem();
         if (partSelected != null) {

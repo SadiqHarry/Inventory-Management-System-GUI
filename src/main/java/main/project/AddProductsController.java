@@ -3,13 +3,29 @@ package main.project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 public class AddProductsController {
 
     @FXML
     private Button backToMain;
+
+    @FXML
+    private TableColumn<?, ?> partsIdColumn;
+
+    @FXML
+    private TableColumn<?, ?> partsInventoryLevelColumn;
+
+    @FXML
+    private TableColumn<?, ?> partsNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> partsPriceColumn;
+
+    @FXML
+    private TableView<?> partsTableView;
 
     @FXML
     private TextField productId;
@@ -30,13 +46,7 @@ public class AddProductsController {
     private TextField productPrice;
 
     @FXML
-    private TextField productToggle;
-
-    @FXML
     private Button saveButton;
-
-    @FXML
-    private Text toggleText;
 
     @FXML
     void saveButton(ActionEvent event) {
@@ -49,3 +59,4 @@ public class AddProductsController {
     }
 
 }
+
