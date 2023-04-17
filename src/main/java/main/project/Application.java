@@ -28,6 +28,7 @@ public class Application extends javafx.application.Application {
         Inventory.addNewPart(sample2);
 
         launch();
+
     }
 }
 
