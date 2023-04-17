@@ -27,6 +27,7 @@ public class MainScreenController implements Initializable {
     @FXML private Button addProductsButton;
     @FXML private Button mainScreenExitButton;
     @FXML private Button deleteParts;
+    @FXML private Button modify;
 
     //Parts Table & Columns
     @FXML private TableView<Part> partsTableView;
@@ -67,6 +68,16 @@ public class MainScreenController implements Initializable {
                 error.errorMessage("Please select value");
             }
         }
+
+    @FXML
+    void modifyAction(ActionEvent event) throws IOException {
+        Parent modify = FXMLLoader.load(getClass().getResource("ModifyParts.fxml"));
+        Scene scene = new Scene(modify);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(scene);
+        window.show();
+
+    }
 
 
     //Initializes the addProductsButton and switches to "AddProducts.fxml" Scene.

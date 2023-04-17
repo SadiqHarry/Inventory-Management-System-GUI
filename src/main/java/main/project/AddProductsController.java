@@ -2,10 +2,17 @@ package main.project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AddProductsController {
 
@@ -54,7 +61,14 @@ public class AddProductsController {
     }
 
     @FXML
-    void switchToMain(ActionEvent event) {
+    void switchToMain(ActionEvent event) throws IOException {
+        boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
+        if(confirmExit){
+            Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+            Scene scene = new Scene(root);
+            Stage MainScreenReturn = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            MainScreenReturn.setScene(scene);
+            MainScreenReturn.show();}
 
     }
 
