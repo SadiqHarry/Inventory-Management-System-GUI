@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class modifyPartsController implements Initializable {
+public class ModifyPartsController implements Initializable {
 
     @FXML private Button backToMain;
     @FXML private RadioButton inHouseButton;
@@ -51,8 +51,8 @@ public class modifyPartsController implements Initializable {
 
     }
 
-    @FXML
-    void switchToMain(ActionEvent event) throws IOException {
+    //Initializes the Cancel button and return to MainScreen
+    @FXML void switchToMain(ActionEvent event) throws IOException {
         boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
         if(confirmExit){
             Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
@@ -63,12 +63,22 @@ public class modifyPartsController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // Set toggle method between radio buttons
         toggleGroup = new ToggleGroup();
         inHouseButton.setToggleGroup(toggleGroup);
         outSourcedButton.setToggleGroup(toggleGroup);
         toggleGroup.selectToggle(inHouseButton);
+
+        Part partSelected = MainController.getPartsModified();
+        partId.setText(String.valueOf(partSelected.getId()));
+        partName.setText(partSelected.getName());
+        partInventory.setText(String.valueOf(partSelected.getStock()));
+        partPrice.setText(String.valueOf(partSelected.getPrice()));
+        partMax.setText(String.valueOf(partSelected.getMax()));
+        partMin.setText(String.valueOf(partSelected.getMin()));
+
 
     }
 }

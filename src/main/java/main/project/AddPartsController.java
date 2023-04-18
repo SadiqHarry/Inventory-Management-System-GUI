@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -50,7 +51,7 @@ public class AddPartsController implements Initializable {
     @FXML void switchToMain(ActionEvent event) throws IOException {
         boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
         if(confirmExit){
-        Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
         Scene scene = new Scene(root);
         Stage MainScreenReturn = (Stage) ((Node) event.getSource()).getScene().getWindow();
         MainScreenReturn.setScene(scene);
@@ -129,7 +130,7 @@ public class AddPartsController implements Initializable {
 
     //    //This method is called if that returns to MainScreen
         void returnToMainScreen(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
