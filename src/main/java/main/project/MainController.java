@@ -1,5 +1,7 @@
 package main.project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -28,6 +33,10 @@ public class MainController implements Initializable {
     @FXML private Button mainScreenExitButton;
     @FXML private Button deleteParts;
     @FXML private Button modify;
+
+    //Text Fields
+    @FXML private TextField partSearchTextField;
+
 
     //Parts Table & Columns
     @FXML private TableView<Part> partsTableView;
@@ -92,6 +101,44 @@ public class MainController implements Initializable {
             window.show();
         }
     }
+
+    @FXML
+    void partSearchButton(ActionEvent event) {
+
+        ObservableList<Part> totalParts = Inventory.getTotalParts();
+        ObservableList<Part> partsResult = FXCollections.observableArrayList();
+        String search = partSearchTextField.getText().trim().toLowerCase();
+
+        //Method to check search (removes whitespaces errors and case sensitivity)
+        for (Part part : totalParts) {
+            if (String.valueOf(part.getId()).contains(search) ||
+                    part.getName().toLowerCase().indexOf(search.replace(" ", "")) >= 0) {
+                partsResult.add(part);
+            }
+        }
+        // Sets result to tableview
+        partsTableView.setItems(partsResult);
+
+        //checks if
+        if (partsResult.size() == 0) {
+            Inventory display = new Inventory();
+            display.errorMessage("Error: not found");
+        }
+        if (search.isEmpty()){
+            Inventory display = new Inventory();
+            display.errorMessage("Error: Empty Field");
+        }
+    }
+
+    //Checks if field is empty and return table
+    @FXML
+    void checkPartSearchField(KeyEvent event) {
+        if (partSearchTextField.getText().isEmpty()) {
+            partsTableView.setItems(Inventory.getTotalParts());
+        }
+    }
+
+
 
 
 

@@ -66,30 +66,32 @@ public class ModifyPartsController implements Initializable {
 
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Part partSelected = MainController.getPartsModified();
-        
-        boolean successful = false;
-        if (partSelected instanceof InHouse) {
-            parttoggle.setText(String.valueOf(((InHouse) partSelected).getMachineId()));
-            successful = true;
-        }
-
-
-        if (partSelected instanceof Outsourced){
-            parttoggle.setText(((Outsourced) partSelected).getCompanyName());
-        }
-
 
         // Set toggle method between radio buttons
         toggleGroup = new ToggleGroup();
         inHouseButton.setToggleGroup(toggleGroup);
         outSourcedButton.setToggleGroup(toggleGroup);
 
+        //Assign toggle function on radio buttons
+        Part partSelected = MainController.getPartsModified();
+        boolean successful = false;
+        if (partSelected instanceof InHouse) {
+            parttoggle.setText(String.valueOf(((InHouse) partSelected).getMachineId()));
+            successful = true;
+        }
+        if (partSelected instanceof Outsourced){
+            parttoggle.setText(((Outsourced) partSelected).getCompanyName());
+        }
         if (successful) {
             toggleGroup.selectToggle(inHouseButton);
+
         } else {
             toggleGroup.selectToggle(outSourcedButton);
         }
+
+
+
+
 
         // Get part values
         partId.setText(String.valueOf(partSelected.getId()));

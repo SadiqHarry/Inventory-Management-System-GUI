@@ -24,12 +24,13 @@
             <Button fx:id="deleteParts" layoutX="384.0" layoutY="311.0" mnemonicParsing="false" onAction="#deleteSelectedParts" text="Delete" />
             <Button fx:id="modify" layoutX="325.0" layoutY="311.0" mnemonicParsing="false" onAction="#modifyPartsAction" text="Modify" />
             <Button fx:id="addPartsButton" layoutX="282.0" layoutY="311.0" mnemonicParsing="false" onAction="#switchToAddParts" text="Add" />
-            <TextField layoutX="282.0" layoutY="14.0" promptText="Search " />
+            <TextField fx:id="partSearchTextField" layoutX="235.0" layoutY="14.0" onKeyPressed="#checkPartSearchField" />
             <Text layoutX="19.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parts">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
+            <Button layoutX="383.0" layoutY="14.0" mnemonicParsing="false" onAction="#partSearchButton" text="Submit" />
          </children>
       </Pane>
       <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory Management System">
@@ -50,12 +51,13 @@
             <Button layoutX="384.0" layoutY="311.0" mnemonicParsing="false" text="Delete" />
             <Button layoutX="325.0" layoutY="311.0" mnemonicParsing="false" text="Modify" />
             <Button fx:id="addProductsButton" layoutX="282.0" layoutY="311.0" mnemonicParsing="false" onAction="#switchToAddProducts" text="Add" />
-            <TextField layoutX="282.0" layoutY="14.0" promptText="Search " />
+            <TextField layoutX="226.0" layoutY="12.0" />
             <Text layoutX="19.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Products">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
+            <Button layoutX="375.0" layoutY="12.0" mnemonicParsing="false" text="Submit" />
          </children>
       </Pane>
       <Button fx:id="mainScreenExitButton" layoutX="934.0" layoutY="461.0" mnemonicParsing="false" onAction="#exitMainScreen" text="Exit" />
