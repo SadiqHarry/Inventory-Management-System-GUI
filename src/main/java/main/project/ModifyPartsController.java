@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ModifyPartsController implements Initializable {
@@ -55,7 +56,7 @@ public class ModifyPartsController implements Initializable {
     @FXML void switchToMain(ActionEvent event) throws IOException {
         boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
         if(confirmExit){
-            Parent root = FXMLLoader.load(getClass().getResource("MainScreen.fxml"));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
             Scene scene = new Scene(root);
             Stage MainScreenReturn = (Stage) ((Node) event.getSource()).getScene().getWindow();
             MainScreenReturn.setScene(scene);
@@ -65,13 +66,32 @@ public class ModifyPartsController implements Initializable {
 
     @Override public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        Part partSelected = MainController.getPartsModified();
+        
+        boolean successful = false;
+        if (partSelected instanceof InHouse) {
+            parttoggle.setText(String.valueOf(((InHouse) partSelected).getMachineId()));
+            successful = true;
+        }
+
+
+        if (partSelected instanceof Outsourced){
+            parttoggle.setText(((Outsourced) partSelected).getCompanyName());
+        }
+
+
         // Set toggle method between radio buttons
         toggleGroup = new ToggleGroup();
         inHouseButton.setToggleGroup(toggleGroup);
         outSourcedButton.setToggleGroup(toggleGroup);
-        toggleGroup.selectToggle(inHouseButton);
 
-        Part partSelected = MainController.getPartsModified();
+        if (successful) {
+            toggleGroup.selectToggle(inHouseButton);
+        } else {
+            toggleGroup.selectToggle(outSourcedButton);
+        }
+
+        // Get part values
         partId.setText(String.valueOf(partSelected.getId()));
         partName.setText(partSelected.getName());
         partInventory.setText(String.valueOf(partSelected.getStock()));

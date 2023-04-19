@@ -18,10 +18,10 @@ public class Application extends javafx.application.Application {
 
     public static void main(String[] args) {
         int setPartId = 0;
-        InHouse sample1 = new InHouse(setPartId, "Chains", 10, 9,2,2,0);
+        InHouse sample1 = new InHouse(setPartId, "Inhouse Chain", 10, 9,2,2,1022);
         sample1.setId(Inventory.getNewPartId());
 
-        Outsourced sample2 = new Outsourced(setPartId, "Pipes", 5, 19,2,2,"aim");
+        Outsourced sample2 = new Outsourced(setPartId, "Outsourced Pipes", 5, 19,2,2,"Steel");
         sample2.setId(Inventory.getNewPartId());
 
         Inventory.addNewPart(sample1);
