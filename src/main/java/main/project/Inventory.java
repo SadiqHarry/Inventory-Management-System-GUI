@@ -2,7 +2,6 @@ package main.project;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -45,7 +44,7 @@ public class Inventory {
 
 
     //Update table with all products
-    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     public static ObservableList<Product> getTotalProducts() {
         return allProducts;
@@ -60,13 +59,14 @@ public class Inventory {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     //Method to initialize the delete button
     public static void delete(Part partSelected) {
         totalParts.remove(partSelected);
     }
 
     //Method for confirmation window
-    public static boolean confirmation(String message){
+    public static boolean confirmation(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Attention!");
         alert.setContentText(null);
@@ -77,7 +77,9 @@ public class Inventory {
     }
 
 
-
+    public static void deleteDuplicate(Part partSelected) {
+        totalParts.remove(partSelected);
+    }
 }
 
 

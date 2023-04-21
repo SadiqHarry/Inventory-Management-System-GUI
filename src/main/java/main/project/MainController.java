@@ -138,10 +138,6 @@ public class MainController implements Initializable {
         }
     }
 
-
-
-
-
     //Initializes the addProductsButton and switches to "AddProducts.fxml" Scene.
     @FXML void switchToAddProducts(ActionEvent event) throws IOException {
         Parent addProducts = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AddProducts.fxml")));

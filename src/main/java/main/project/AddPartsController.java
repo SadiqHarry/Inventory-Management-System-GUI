@@ -80,19 +80,19 @@ public class AddPartsController implements Initializable {
             //Checks if name field is empty
             if (name == null || name.trim().isEmpty()) {
                 Inventory display = new Inventory();
-                display.errorMessage("Please enter name");
+                display.errorMessage("Error: Please enter name");
                 return;}
 
             //Checks if min field is greater than max field
             if (min > max) {
                 Inventory display = new Inventory();
-                display.errorMessage("Inventory minimum must be less than maximum!");
+                display.errorMessage("Error: Inventory minimum must be less than maximum!");
                 return;}
 
             // Checks to validate that inventory levels are between min and max
             if (stock < min || stock > max) {
                 Inventory display =  new Inventory();
-                display.errorMessage("Inventory must be in between minimum and maximum!");
+                display.errorMessage("Error: Inventory must be in between minimum and maximum!");
                 return;}
 
             // Checks if inHouse radio button is toggled and calls addPart method to add it to table

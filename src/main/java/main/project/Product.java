@@ -1,5 +1,8 @@
 package main.project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Product {
     private int id;
     private String name;
@@ -7,6 +10,7 @@ public class Product {
     private int stock;
     private int min;
     private int max;
+    private ObservableList<Part> newAssociatedParts = FXCollections.observableArrayList();
 
 
     //Constructor
@@ -57,5 +61,14 @@ public class Product {
     public void setMax(int max) {
         this.max = max;
     }
+
+    public void  newAssociatedParts(Part part) {
+        newAssociatedParts.add(part);
+    }
+
+    public ObservableList<Part> totalAssociatedParts() {return newAssociatedParts;}
 }
+
+
+
 
