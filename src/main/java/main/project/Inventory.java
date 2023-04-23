@@ -60,10 +60,14 @@ public class Inventory {
         alert.showAndWait();
     }
 
-    //Method to initialize the delete button
+    //Method to executes the delete method
     public static void delete(Part partSelected) {
-        totalParts.remove(partSelected);
-    }
+        totalParts.remove(partSelected);}
+
+    //Method to executes the delete method
+    public static void delete(Product productSelected) {
+        allProducts.remove(productSelected);}
+
 
     //Method for confirmation window
     public static boolean confirmation(String message) {

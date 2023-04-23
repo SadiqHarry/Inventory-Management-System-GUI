@@ -68,23 +68,28 @@ public class MainController implements Initializable {
             Scene scene = new Scene(addParts);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
-            window.show();
+            window.show();}
 
-    }
-    //Initializes the "delete" button on Parts table
+    //Initializes the "delete" button on Parts table view
     @FXML void deleteSelectedParts(ActionEvent event) {
         Part partSelected = partsTableView.getSelectionModel().getSelectedItem();
-        if (partSelected != null) {
-           boolean confirmDelete = Inventory.confirmation("Confirm: Delete");
-            if (confirmDelete) {
-               Inventory.delete(partSelected);
-            }
-        }
+        if (partSelected == null) {
+            Inventory error = new Inventory();
+            error.errorMessage("Error: Please select a part");}
             else {
-                Inventory error = new Inventory();
-                error.errorMessage("Please select value");
-            }
-        }
+                Inventory.confirmation("Confirm: Delete");
+                Inventory.delete(partSelected);}}
+
+    //Initializes the "delete" button on Products table view
+    @FXML
+    void deleteSelectedProducts(ActionEvent event) {
+    Product productSelected = productsTable.getSelectionModel().getSelectedItem();
+    if (productSelected == null){
+    Inventory display = new Inventory();
+        display.errorMessage("Error: Please Select a product");}
+    else {
+        Inventory.confirmation("Confirm");}
+        Inventory.delete(productSelected);}
 
 
         //Initializes the "modify" button and displays the selected part
@@ -102,6 +107,7 @@ public class MainController implements Initializable {
         }
     }
 
+    //Search Method for parts tableview
     @FXML
     void partSearchButton(ActionEvent event) {
 
