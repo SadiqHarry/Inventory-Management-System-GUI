@@ -19,7 +19,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -36,6 +35,7 @@ public class MainController implements Initializable {
 
     //Text Fields
     @FXML private TextField partSearchTextField;
+    @FXML private TextField productSearchTextField;
 
 
     //Parts Table & Columns
@@ -108,41 +108,67 @@ public class MainController implements Initializable {
     }
 
     //Search Method for parts tableview
-    @FXML
-    void partSearchButton(ActionEvent event) {
-
+    @FXML void partSearchButton(ActionEvent event) {
         ObservableList<Part> totalParts = Inventory.getTotalParts();
         ObservableList<Part> partsResult = FXCollections.observableArrayList();
-        String search = partSearchTextField.getText().trim().toLowerCase();
+        String searchResult = partSearchTextField.getText().trim().toLowerCase();
 
         //Method to check search (removes whitespaces errors and case sensitivity)
         for (Part part : totalParts) {
-            if (String.valueOf(part.getId()).contains(search) ||
-                    part.getName().toLowerCase().indexOf(search.replace(" ", "")) >= 0) {
-                partsResult.add(part);
-            }
+            if (String.valueOf(part.getId()).contains(searchResult) ||
+                    part.getName().toLowerCase().contains(searchResult.toLowerCase().replace(" ", ""))) {
+                partsResult.add(part);}
         }
         // Sets result to tableview
         partsTableView.setItems(partsResult);
 
-        //checks if
+        //checks if empty
         if (partsResult.size() == 0) {
             Inventory display = new Inventory();
             display.errorMessage("Error: not found");
         }
-        if (search.isEmpty()){
+        if (searchResult.isEmpty()){
             Inventory display = new Inventory();
-            display.errorMessage("Error: Empty Field");
-        }
+            display.errorMessage("Error: Empty Field");}
     }
 
     //Checks if field is empty and return table
-    @FXML
-    void checkPartSearchField(KeyEvent event) {
+    @FXML void checkPartSearchField(KeyEvent event) {
         if (partSearchTextField.getText().isEmpty()) {
-            partsTableView.setItems(Inventory.getTotalParts());
-        }
+            partsTableView.setItems(Inventory.getTotalParts());}
     }
+
+
+    //Search method for product table view
+    @FXML void productSearchButton(ActionEvent event) {
+        ObservableList<Product> totalProducts = Inventory.getTotalProducts();
+        ObservableList<Product> newTotalProducts = FXCollections.observableArrayList();
+        String searchResult = productSearchTextField.getText();
+
+        //Method to check search (removes whitespaces errors and case sensitivity)
+        for (Product product : totalProducts) {
+            if (String.valueOf(product.getId()).contains(searchResult) ||
+                    product.getName().toLowerCase().contains(searchResult.toLowerCase().replace(" ", ""))) {
+                    newTotalProducts.add(product);}
+        }
+
+        productsTable.setItems(newTotalProducts);
+
+        //checks if empty
+        if (newTotalProducts.size() == 0) {
+            Inventory display = new Inventory();
+            display.errorMessage("Error: not found");}
+
+        if (newTotalProducts.isEmpty()){
+            Inventory display = new Inventory();
+            display.errorMessage("Error: Empty Field");}}
+
+    //Checks if field is empty and return table
+    @FXML void productSearchKeyPressed(KeyEvent event) {
+        if (productSearchTextField.getText().isEmpty()) {
+            productsTable.setItems(Inventory.getTotalProducts());}}
+
+
 
     //Initializes the addProductsButton and switches to "AddProducts.fxml" Scene.
     @FXML void switchToAddProducts(ActionEvent event) throws IOException {
@@ -151,7 +177,6 @@ public class MainController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
         window.show();
-
     }
 
     //Initializes the exit button and exists the program from "MainScreen"
