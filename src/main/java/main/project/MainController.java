@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -40,17 +41,17 @@ public class MainController implements Initializable {
 
     //Parts Table & Columns
     @FXML private TableView<Part> partsTableView;
-    @FXML private TableColumn<?, ?> partsIdColumn;
-    @FXML private TableColumn<?, ?> partsInventoryLevelColumn;
-    @FXML private TableColumn<?, ?> partsNameColumn;
-    @FXML private TableColumn<?, ?> partsPriceColumn;
+    @FXML private TableColumn<Part, Integer> partsIdColumn;
+    @FXML private TableColumn<Part, Integer> partsInventoryLevelColumn;
+    @FXML private TableColumn<Part, String> partsNameColumn;
+    @FXML private TableColumn<Part, Double> partsPriceColumn;
 
     //Product Table & Columns
     @FXML private TableView<Product> productsTable;
-    @FXML private TableColumn<?, ?> productsIdColumn;
-    @FXML private TableColumn<?, ?> productsInventoryLevelColumn;
-    @FXML private TableColumn<?, ?> productsNameColumn;
-    @FXML private TableColumn<?, ?> productsPriceColumn;
+    @FXML private TableColumn<Product, Integer> productsIdColumn;
+    @FXML private TableColumn<Product, Integer> productsInventoryLevelColumn;
+    @FXML private TableColumn<Product, String> productsNameColumn;
+    @FXML private TableColumn<Product, Double> productsPriceColumn;
 
     //Instances
     private static Part partsModified;
@@ -107,10 +108,9 @@ public class MainController implements Initializable {
             Scene scene = new Scene(modify);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
-            window.show();}
-    }
+            window.show();}}
 
-
+//Method modify product button
     @FXML void modifyProductButton(ActionEvent event) throws IOException {
         productModified = productsTable.getSelectionModel().getSelectedItem();
 
@@ -221,9 +221,7 @@ public class MainController implements Initializable {
         productsIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         productsNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         productsInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        productsPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-    }
-}
+        productsPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));}}
 
 
 

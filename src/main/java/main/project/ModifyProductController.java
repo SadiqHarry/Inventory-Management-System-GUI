@@ -56,18 +56,18 @@ public class ModifyProductController implements Initializable {
 
 
 
-
-    @FXML
-    void saveButton(ActionEvent event) throws IOException {
+    //Initializes the save button
+    @FXML void saveButton(ActionEvent event) throws IOException {
 
         try {
-            int id = 0;
+            int id = productSelected.getId();
             String name = productName.getText();
             double price = Double.parseDouble(productPrice.getText());
             int stock = Integer.parseInt(productInventory.getText());
             int min = Integer.parseInt(productMin.getText());
             int max = Integer.parseInt(productMax.getText());
 
+            //Error Handling
             if (name == null || name.trim().isEmpty()) {
                 Inventory display = new Inventory();
                 display.errorMessage("Error: Please Enter Name");
@@ -75,77 +75,63 @@ public class ModifyProductController implements Initializable {
                 if (min > max) {
                     Inventory display = new Inventory();
                     display.errorMessage("Error: Inventory minimum must be less than maximum!");
-                    return;
-                }
+                    return;}
+
                 if (stock < min || stock > max) {
                     Inventory display = new Inventory();
                     display.errorMessage("Error: Inventory must be in between minimum and maximum!");
-                    return;
-                }
+                    return;}
+
                 if (price == 0){
                     Inventory display = new Inventory();
                     display.errorMessage("Error: Enter a price");
-                    return;
-                }
+                    return;}
 
-
-                Product newTotaProduct = new Product(id, name, price, stock, min, max);
-
+                //Create new table
+                Product newTotalProduct = new Product(id, name, price, stock, min, max);
                 for (Part part : associatedParts) {
-                    newTotaProduct.newAssociatedParts(part);
+                    newTotalProduct.newAssociatedParts(part);
                 }
 
-                newTotaProduct.setId(Inventory.getNewProductId());
-                Inventory.addProduct(newTotaProduct);
                 Inventory.deleteDuplicate(productSelected);
-                returnMain(event);
+                Inventory.addProduct(newTotalProduct);
+                returnMain(event);}
 
-            }
         } catch (NumberFormatException e) {
             Inventory display = new Inventory();
-            display.errorMessage("Error: Values Missing");
-        }
+            display.errorMessage("Error: Values Missing");}}
 
-    }
+    //Method to return to main
     void returnMain(ActionEvent event) throws IOException {
         Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
-    }
+        stage.show();}
 
 
-
-
-    @FXML
-    void switchToMain(ActionEvent event) throws IOException {
+    //Cancel button
+    @FXML void switchToMain(ActionEvent event) throws IOException {
         boolean confirmExit = Inventory.confirmation("Confirm: Return to main menu");
         if(confirmExit){
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainScreen.fxml")));
             Scene scene = new Scene(root);
             Stage MainScreenReturn = (Stage) ((Node) event.getSource()).getScene().getWindow();
             MainScreenReturn.setScene(scene);
-            MainScreenReturn.show();}
+            MainScreenReturn.show();}}
 
-    }
-
-    @FXML
-    void addPartButton(ActionEvent event) {
-
+    //Add part to associated table
+    @FXML void addPartButton(ActionEvent event) {
         Part partSelected= partsTableView.getSelectionModel().getSelectedItem();
-
         if (partSelected == null) {
             Inventory display = new Inventory();
             display.errorMessage("Error: No Selected");
         } else {
             associatedParts.add(partSelected);
-            associatedPartTable.setItems(associatedParts);
-        }
+            associatedPartTable.setItems(associatedParts);}}
 
-    }
-    @FXML
-    void removeAssociatedPart(ActionEvent event) {
+    //Remove part from associated table
+    @FXML void removeAssociatedPart(ActionEvent event) {
         Part partSelected = associatedPartTable.getSelectionModel().getSelectedItem();
 
         if (partSelected == null) {
@@ -154,12 +140,10 @@ public class ModifyProductController implements Initializable {
         } else {
             Inventory.confirmation("Confirm: Delete");
             associatedParts.remove(partSelected);
-            associatedPartTable.setItems(associatedParts);
-        }
-    }
+            associatedPartTable.setItems(associatedParts);}}
 
-    @FXML
-    void partSearchButton(ActionEvent event) {
+    //Search
+    @FXML void partSearchButton(ActionEvent event) {
         ObservableList<Part> totalParts = Inventory.getTotalParts();
         ObservableList<Part> partsResult = FXCollections.observableArrayList();
         String search = partSearchTextField.getText().trim().toLowerCase();
@@ -168,10 +152,8 @@ public class ModifyProductController implements Initializable {
         for (Part part : totalParts) {
             if (String.valueOf(part.getId()).contains(search) ||
                     part.getName().toLowerCase().contains(search.replace(" ", ""))) {
-                partsResult.add(part);
-            }
+                partsResult.add(part);}}
 
-        }
         // Sets result to tableview
         partsTableView.setItems(partsResult);
 
@@ -182,24 +164,16 @@ public class ModifyProductController implements Initializable {
         }
         if (search.isEmpty()) {
             Inventory display = new Inventory();
-            display.errorMessage("Error: Empty Field");
-        }
-    }
+            display.errorMessage("Error: Empty Field");}}
 
+    //Return table when deleting text search
     @FXML
     void checkPartSearchField(KeyEvent event) {
         if (partSearchTextField.getText().isEmpty()) {
-            partsTableView.setItems(Inventory.getTotalParts());
-        }
-    }
+            partsTableView.setItems(Inventory.getTotalParts());}}
 
 
-
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
         productSelected = MainController.getProductModified();
         associatedParts = productSelected.totalAssociatedParts();
 
@@ -219,8 +193,4 @@ public class ModifyProductController implements Initializable {
         productInventory.setText(String.valueOf(productSelected.getStock()));
         productPrice.setText(String.valueOf(productSelected.getPrice()));
         productMax.setText(String.valueOf(productSelected.getMax()));
-        productMin.setText(String.valueOf(productSelected.getMin()));
-
-    }
-
-}
+        productMin.setText(String.valueOf(productSelected.getMin()));}}
