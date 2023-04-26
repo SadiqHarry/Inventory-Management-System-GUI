@@ -54,10 +54,14 @@ public class MainController implements Initializable {
 
     //Instances
     private static Part partsModified;
+    private static Product productModified;
 
     //Assigns method
     public static Part getPartsModified() {
         return partsModified;
+    }
+    public static Product getProductModified(){
+        return productModified;
     }
 
 
@@ -97,15 +101,30 @@ public class MainController implements Initializable {
         partsModified = partsTableView.getSelectionModel().getSelectedItem();
         if (partsModified == null) {
             Inventory display = new Inventory();
-            display.errorMessage("Error: Please Select a part to modify");
+            display.errorMessage("Error: Please select a part to modify");
         } else {
             Parent modify = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModifyParts.fxml")));
             Scene scene = new Scene(modify);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
-            window.show();
-        }
+            window.show();}
     }
+
+
+    @FXML void modifyProductButton(ActionEvent event) throws IOException {
+        productModified = productsTable.getSelectionModel().getSelectedItem();
+
+        if(productModified == null){
+            Inventory display = new Inventory();
+            display.errorMessage("Error: Please select a product to modify");
+        } else {
+            Parent modify = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModifyProducts.fxml")));
+            Scene scene = new Scene(modify);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(scene);
+            window.show();}
+    }
+
 
     //Search Method for parts tableview
     @FXML void partSearchButton(ActionEvent event) {

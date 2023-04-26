@@ -62,11 +62,13 @@ public class Inventory {
 
     //Method to executes the delete method
     public static void delete(Part partSelected) {
-        totalParts.remove(partSelected);}
+        totalParts.remove(partSelected);
+    }
 
     //Method to executes the delete method
     public static void delete(Product productSelected) {
-        allProducts.remove(productSelected);}
+        allProducts.remove(productSelected);
+    }
 
 
     //Method for confirmation window
@@ -83,6 +85,12 @@ public class Inventory {
 
     public static void deleteDuplicate(Part partSelected) {
         totalParts.remove(partSelected);
+
+    }
+
+
+    public static void deleteDuplicate(Product productSelected) {
+        allProducts.remove(productSelected);
     }
 }
 

@@ -22,10 +22,11 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AddProductsController implements Initializable {
+public class ModifyProductController implements Initializable {
 
 
-    private final ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    Product productSelected;
 
     @FXML private TableView<Part> associatedPartTable;
     @FXML private TableColumn<Part, Integer> associatedPartIdColumn;
@@ -96,6 +97,7 @@ public class AddProductsController implements Initializable {
 
                 newTotaProduct.setId(Inventory.getNewProductId());
                 Inventory.addProduct(newTotaProduct);
+                Inventory.deleteDuplicate(productSelected);
                 returnMain(event);
 
             }
@@ -198,6 +200,9 @@ public class AddProductsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        productSelected = MainController.getProductModified();
+        associatedParts = productSelected.totalAssociatedParts();
+
         partsIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         partsNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partsInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
@@ -209,7 +214,13 @@ public class AddProductsController implements Initializable {
         associatedPartInventoryColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPartPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
+        productId.setText(String.valueOf(productSelected.getId()));
+        productName.setText(productSelected.getName());
+        productInventory.setText(String.valueOf(productSelected.getStock()));
+        productPrice.setText(String.valueOf(productSelected.getPrice()));
+        productMax.setText(String.valueOf(productSelected.getMax()));
+        productMin.setText(String.valueOf(productSelected.getMin()));
+
     }
 
 }
-
