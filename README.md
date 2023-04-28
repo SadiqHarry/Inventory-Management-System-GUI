@@ -17,9 +17,10 @@ To use this GUI, follow these steps:
 Once you have the project running, you can use the GUI to manage your inventory. The interface provides a user-friendly way to add, edit, and delete items from your inventory. You can also view reports and generate summaries of your inventory.
 
 ## Display
+![Screenshot from 2023-04-28 12-50-10](https://user-images.githubusercontent.com/116308353/235231832-7d2d3fcc-6162-4a79-80a0-64abe0248f5e.png)
 ![Screenshot from 2023-04-28 12-50-34](https://user-images.githubusercontent.com/116308353/235231814-3b875af3-c0f0-4c01-b8f5-fd739b524403.png)
 ![Screenshot from 2023-04-28 12-50-21](https://user-images.githubusercontent.com/116308353/235231826-683783be-e111-4a06-a94c-b4ceb0f1f811.png)
-![Screenshot from 2023-04-28 12-50-10](https://user-images.githubusercontent.com/116308353/235231832-7d2d3fcc-6162-4a79-80a0-64abe0248f5e.png)
+
 
 
 ## Contributing
