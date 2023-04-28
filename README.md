@@ -1,10 +1,8 @@
-<div id="bigtext">
-    <span>BIGTEXT</span>
-    <span>Makes Text Big</span>
-</div>
-<script>
-$('#bigtext').bigtext();
-</script> 
+This is a Graphical User Inerface for an Inventory Management System
 
-Language: Java JDK 19 
-Framework: Java Fx
+IDE: Intelij 17.0.6
+Language: Java JDK 19.0.2
+Framework: JavaFx
+GUI: Scene Builder 19.0.0
+
+
