@@ -1,6 +1,6 @@
 # Inventory Management System GUI
 
-This project is a Graphical User Interface (GUI) for an Inventory Management System developed using Java JDK 19.0.2 and the JavaFX framework. It provides a user-friendly interface for managing inventory additions, deletions, and other data. The system was designed to meet the specific business requirements of a small manufacturing organization that has outgrown its current inventory system.
+This project is a Graphical User Interface (GUI) for an Inventory Management System developed using Java JDK 19.0.2, JavaFX framework and the SceneBuilder visual layout tool. It provides a user-friendly interface for managing inventory additions, deletions, and other data. The system was designed to meet the specific business requirements of a small manufacturing organization that has outgrown its current inventory system.
 
 ![Screenshot from 2023-04-28 12-50-10](https://user-images.githubusercontent.com/116308353/235231832-7d2d3fcc-6162-4a79-80a0-64abe0248f5e.png)
 
