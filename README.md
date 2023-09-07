@@ -4,6 +4,10 @@ This project is a Graphical User Interface (GUI) for an Inventory Management Sys
 
 ![Screenshot from 2023-04-28 12-50-10](https://user-images.githubusercontent.com/116308353/235231832-7d2d3fcc-6162-4a79-80a0-64abe0248f5e.png)
 
+## Technologies Leveraged
+- Java/JavaFX
+- Scenebuilder
+- Intellij 
 
 ## Features
 
